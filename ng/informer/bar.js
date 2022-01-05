@@ -1,4 +1,5 @@
+import ReactFoo from "../../src/ReactFoo";
+import {reactToAngular} from "angulareact";
+
 angular.module('informer')
-    .component('bar', {
-        template: '<div>bar component</div>'
-    });
+    .component('ngBar', reactToAngular(ReactFoo));
