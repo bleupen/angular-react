@@ -16,6 +16,7 @@ module.exports = (_env, argv) => {
         output: {
             path: path.resolve(__dirname, './dist'),
             filename: 'assets/js/[name].[contenthash:8].js',
+            clean: true
         },
         plugins: [
             new HtmlWebpackPlugin({ title: 'Informer Web Reporting', template: 'index.html', inject: true }),
@@ -57,6 +58,18 @@ module.exports = (_env, argv) => {
                 },
                 {
                     test: /.jsx?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                            cacheCompression: false,
+                            envName: 'development'
+                        }
+                    }
+                },
+                {
+                    test: /.js/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
